@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GSFormItem } from './directives/gs-form-item.directive';
+import { GSFormControl } from './directives/gs-form-control.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GSFormItem
+    GSFormControl
   ],
   imports: [
     BrowserModule,

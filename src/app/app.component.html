@@ -1,10 +1,7 @@
 <div style="width: 100%; display: flex; justify-content: center;">
   <div class="form-container">
     <form [formGroup]="this.form">
-      <div gsFormItem [valid]="this.form.get('projectName')!.valid!" 
-      [touched]="this.form.get('projectName')!.touched!" 
-      errorMessage="Project Name not valid" 
-      class="form-item-container">
+      <div gsFormControl class="form-item-container" [control]="this.form.get('projectName')" errorMessage="Project Name not valid">
         <input 
           placeholder="Project Name"
           class="form-control form-item"
@@ -12,10 +9,7 @@
           formControlName="projectName"
         >
       </div>
-      <div gsFormItem 
-      [valid]="this.form.get('email')!.valid!" 
-      [touched]="this.form.get('email')!.touched!" 
-      errorMessage="Email not valid" class="form-item-container">
+      <div gsFormControl class="form-item-container" [control]="this.form.get('email')" errorMessage="Email not valid">
         <input 
           placeholder="Email"
           class="form-control form-item"
@@ -29,7 +23,7 @@
           name="subscription"
           formControlName="projectStatus"
         >
-          <option *ngFor="let value of this.projectStatus" [value]="value">{{ value }}</option>
+          <option style="border: 0;" *ngFor="let value of this.projectStatus" [value]="value">{{ value }}</option>
         </select>
       </div>
       <button [disabled]="form.invalid" class="submit-btn" (click)="this.submitForm()">Submit</button>

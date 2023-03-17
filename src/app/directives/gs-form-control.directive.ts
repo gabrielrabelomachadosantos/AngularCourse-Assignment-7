@@ -1,13 +1,13 @@
-import { Directive, ElementRef, HostListener, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, DoCheck, ElementRef, HostListener, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { FormControl, AbstractControl } from '@angular/forms';
 
 @Directive({
-  selector: '[gsFormItem]',
+  selector: '[gsFormControl]',
 })
-export class GSFormItem implements OnInit, OnChanges {
+export class GSFormControl implements OnInit, DoCheck {
 
   @Input() errorMessage: string = '';
-  @Input() valid!: boolean;
-  @Input() touched!: boolean;
+  @Input() control!: AbstractControl | null;
 
   private errorMessageAdded: boolean = false;
   private paragraph: any;
@@ -25,12 +25,12 @@ export class GSFormItem implements OnInit, OnChanges {
     this.renderer.appendChild(this.paragraph, this.text);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngDoCheck(): void {
     this.validateValue();
   }
 
   private validateValue(): void {
-    if (!this.valid && this.touched) {
+    if (!this.control?.valid && this.control?.touched) {
       this.addErrorMessageParagraph();
       return;
     }
